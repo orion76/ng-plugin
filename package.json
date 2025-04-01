@@ -1,6 +1,6 @@
 {
   "name": "@orion76/ng-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Идея библиотеки Plugin была заимствована у CMF Drupal 8.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test":"ng test --karma-config karma-terminal.conf.js --watch=false",
+    "test": "ng test --karma-config karma-terminal.conf.js --watch=false",
     "test:console": "ng test --karma-config karma-terminal.conf.js",
     "test:browser": "ng test --karma-config karma.conf.js",
     "version-update": "npm version patch",
@@ -28,7 +28,6 @@
     "@orion76/plugin": "^0.1.3"
   },
   "devDependencies": {
-
     "@angular-devkit/build-angular": "^19.2.5",
     "@angular/cli": "^19.2.5",
     "@angular/platform-browser-dynamic": "^19.2.4",
