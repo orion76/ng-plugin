@@ -12,7 +12,8 @@
     "test:console": "ng test --karma-config karma-terminal.conf.js",
     "test:browser": "ng test --karma-config karma.conf.js",
     "version-update": "npm version patch",
-    "build": "npm run version-update && ng build"
+    "build": "ng build",
+    "build:github": "node ./node_modules/.bin/ng build"
   },
   "repository": {
     "type": "git",
