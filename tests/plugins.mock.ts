@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Plugin } from "../decorators/plugin.decorator";
+import { Plugin } from "../src/decorators/plugin.decorator";
 export const PLUGIN_TYPE_TEST = 'PLUGIN_TYPE_TEST'
 
 

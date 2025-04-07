@@ -1,26 +1,16 @@
 import { inject, InjectionToken } from "@angular/core";
-import { IPluginDefinition, IPluginDiscovery } from "@gpb/plugin";
+
 import { TemplatePlugin, PLUGIN_TEMPLATE__PLUGIN_TYPE } from "./plugin";
-import { IPluginTemplateConfig } from "./types";
+import { IPluginTemplateConfig, TPluginTemplateDefinition } from "./types";
+import { IPluginDefinition, IPluginDiscovery, PluginDiscoveryBase } from "@orion76/plugin";
 
 
 const PLUGIN_TYPE_CONFIGS_TOKEN = new InjectionToken<IPluginTemplateConfig[]>('PLUGIN_TYPE_CONFIGS_TOKEN');
 
-function createLoggerDefinition(config: IPluginTemplateConfig): IPluginDefinition<IPluginTemplateConfig> {
-    const { id, label } = config;
-    return {
-        pluginType: PLUGIN_TEMPLATE__PLUGIN_TYPE,
-        id,
-        label,
-        data: config,
-        cls: TemplatePlugin
-    }
+function createLoggerDefinition(config: IPluginTemplateConfig): TPluginTemplateDefinition {
+    return { ...config, type: PLUGIN_TEMPLATE__PLUGIN_TYPE, pluginClass: TemplatePlugin }
 }
 
-export class PluginExampleDiscovery implements IPluginDiscovery<IPluginTemplateConfig> {
-    private _definitions: IPluginDefinition<IPluginTemplateConfig>[] = inject(PLUGIN_TYPE_CONFIGS_TOKEN).map(createLoggerDefinition);
-
-    getDefinitions(): IPluginDefinition<IPluginTemplateConfig>[] {
-        return this._definitions;
-    }
+export class PluginExampleDiscovery extends PluginDiscoveryBase implements IPluginDiscovery {
+    protected definitions: TPluginTemplateDefinition[] = inject(PLUGIN_TYPE_CONFIGS_TOKEN).map(createLoggerDefinition);
 }

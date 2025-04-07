@@ -2,7 +2,8 @@ import { TestBed } from "@angular/core/testing";
 
 import { IPluginManager } from "@orion76/plugin";
 import { PLUGIN_TYPE_TEST, TEST_PLUGINS_DATA } from "../plugins.mock";
-import { createPluginManagerToken, PluginManagerDefault } from "../../plugin-manager";
+import { createPluginManagerToken, PluginManagerDefault } from "../../src/plugin-manager";
+
 
 const PLUGIN_MANAGER_TEST = createPluginManagerToken( PLUGIN_TYPE_TEST);
 

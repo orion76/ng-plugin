@@ -1,6 +1,8 @@
 import { TestBed } from "@angular/core/testing";
 import { IPluginBuilder } from "@orion76/plugin";
-import { PluginBuilderDefault } from "../../plugin-builder/plugin-builder-default.service";
+import { PluginBuilderDefault } from "../../src/plugin-builder/plugin-builder-default.service";
+
+
 
 
 describe('PluginBuilderDefault', () => {

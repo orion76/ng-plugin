@@ -1,6 +1,7 @@
-import { IPluginDefinition } from "@gpb/plugin";
+import { IPlugin, IPluginDefinition } from "@orion76/plugin";
 
-export interface IPluginTemplate {
+
+export interface IPluginTemplate extends IPlugin{
 
 }
 
@@ -9,4 +10,4 @@ export interface IPluginTemplateConfig {
     label: string;
 }
 
-export type TPluginTemplateDefinition = IPluginDefinition<IPluginTemplateConfig> 
+export type TPluginTemplateDefinition = IPluginDefinition<IPluginTemplate> 
