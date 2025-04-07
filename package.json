@@ -1,6 +1,6 @@
 {
   "name": "@orion76/ng-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Идея библиотеки Plugin была заимствована у CMF Drupal 8.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
