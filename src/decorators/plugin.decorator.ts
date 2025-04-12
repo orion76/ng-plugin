@@ -4,9 +4,6 @@ import { IPluginDefinition } from "@orion76/plugin";
 import { getPluginsStore } from "../plugins-store";
 import { createDebugLogger } from "../utils/debug-logger-factory";
 
-
-
-
 const DEBUG = false;
 const debug = createDebugLogger(DEBUG, '+++[Plugin-decorator]');
 
@@ -21,14 +18,15 @@ export function Plugin<D extends IPluginDefinition = IPluginDefinition>(definiti
         if (definition.disabled) {
             return;
         }
-        if (DEBUG) {
-            const { type, id, label } = definition;
-            debug('Add plugin definition', { type, id, label });
-        }
 
-        const { type } = definition;
+        const { pluginType } = definition;
 
-        const pluginStore = getPluginsStore().getPluginType(type);
+        debug('Add plugin definition', () => {
+            const { pluginType, id, label } = definition;
+            return { pluginType, id, label };
+        });
+
+        const pluginStore = getPluginsStore().getPluginType(pluginType);
 
         definition.pluginClass = pluginClass;
         pluginStore.addPluginDefinition(definition);

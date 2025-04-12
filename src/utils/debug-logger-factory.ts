@@ -1,5 +1,12 @@
 export type TDebugLogger = (...vars: any[]) => void;
 
+
+
 export function createDebugLogger(DEBUG: boolean, label: string): TDebugLogger {
-    return DEBUG ? (...vars: any[]) => console.log(label, ...vars) : () => undefined
+    if (!DEBUG) {
+        return () => undefined;
+    }
+    return (...vars: any[]) => {
+        console.log(label, ...vars.map((v: any) => typeof v === 'function' ? v() : v));
+    }
 }

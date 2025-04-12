@@ -5,7 +5,7 @@ export const PLUGIN_TYPE_TEST = 'PLUGIN_TYPE_TEST'
 
 @Plugin({
     id: 'PLUGIN_TEST_ONE_ID',
-    type: PLUGIN_TYPE_TEST,
+    pluginType: PLUGIN_TYPE_TEST,
     label: 'PLUGIN TEST ONE'
 })
 class PluginTestOne {
@@ -13,7 +13,7 @@ class PluginTestOne {
 
 @Plugin({
     id: 'PLUGIN_TEST_TWO_ID',
-    type: PLUGIN_TYPE_TEST,
+    pluginType: PLUGIN_TYPE_TEST,
     label: 'PLUGIN TEST TWO'
 })
 class PluginTestTwo {
@@ -21,7 +21,7 @@ class PluginTestTwo {
 }
 @Plugin({
     id: 'PLUGIN_TEST_THREE_ID',
-    type: PLUGIN_TYPE_TEST,
+    pluginType: PLUGIN_TYPE_TEST,
     label: 'PLUGIN TEST THREE'
 })
 class PluginTestThree {

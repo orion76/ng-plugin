@@ -1,14 +1,14 @@
 import { EnvironmentInjector, inject, Injector, runInInjectionContext } from '@angular/core';
-import { IPluginDefinitionWithDeriver, IPluginDeriver, IPluginDiscovery, PluginDiscoveryWithDerivativesDecorator } from '@orion76/plugin';
+import { IPluginDefinition, IPluginDeriver, IPluginDiscovery, PluginDiscoveryDecorator, PluginException } from '@orion76/plugin';
 import { PLUGIN_DISCOVERY_DECORATED, PLUGIN_DERIVER } from '../injection-tokens';
 
 
 
-export class PluginDiscoveryWithDerivativeDecoratorDefault<
-  BasePluginDef extends IPluginDefinitionWithDeriver = IPluginDefinitionWithDeriver,
+export class PluginDiscoveryDecoratorDefault<
+  BasePluginDef extends IPluginDefinition = IPluginDefinition,
   DerivDef extends object = object,
   PluginDef extends BasePluginDef & DerivDef = BasePluginDef & DerivDef
-> extends PluginDiscoveryWithDerivativesDecorator<BasePluginDef, DerivDef, PluginDef> {
+> extends PluginDiscoveryDecorator<BasePluginDef, DerivDef, PluginDef> {
 
   protected override derivers: Map<string, IPluginDeriver<DerivDef>> = new Map();
   protected parentInjector = inject(EnvironmentInjector);
@@ -18,9 +18,14 @@ export class PluginDiscoveryWithDerivativeDecoratorDefault<
     const { parentInjector } = this;
 
     return runInInjectionContext(parentInjector, () => {
+      const { deriverClass } = basePLuginDefinition;
+      if (!deriverClass) {
+        const { id, pluginType } = basePLuginDefinition;
+        throw new PluginException(pluginType, id, 'Plugin deriver is missing. PluginDiscoveryWithDerivativeDecoratorDefault.createDeriver()')
+      }
       const injector = Injector.create({
         providers: [
-          { provide: PLUGIN_DERIVER, useClass: basePLuginDefinition.deriverClass }
+          { provide: PLUGIN_DERIVER, useClass: deriverClass! }
         ],
         parent: parentInjector
       });

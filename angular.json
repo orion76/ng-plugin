@@ -18,7 +18,7 @@
               "tsConfig": "tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": ".lib.json"
+              "tsConfig": "tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -32,7 +32,7 @@
               "zone.js/testing"
             ],
             "include": [
-              "../tests/**/**.spec.ts"
+              "../tests/**/*.ts"
             ]
           }
         }

@@ -1,4 +1,4 @@
-import { IPluginDefinition } from "@orion76/plugin";
+import { IPluginDefinition, PluginException } from "@orion76/plugin";
 import { IPluginTypeStore } from "./types";
 import { createDebugLogger } from "../utils/debug-logger-factory";
 
@@ -18,11 +18,12 @@ export class PluginTypeStore implements IPluginTypeStore {
 
     addPluginDefinition(definition: IPluginDefinition) {
         debug('addPluginDefinition', definition);
+
         const { _definitions } = this;
 
         if (_definitions.findIndex((item) => item.id === definition.id) > -1) {
-            const { id, type } = definition;
-            throw new Error(`Plugin definition already exsists. Plugin type: ${type}, plugin ID: ${id}`);
+            const { id, pluginType } = definition;
+            throw new PluginException(pluginType, id, 'Plugin definition already exsists');
         }
 
         const definitionClone: IPluginDefinition = { ...definition };
