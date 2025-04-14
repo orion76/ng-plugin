@@ -1,10 +1,10 @@
 import { IPluginDefinition, PluginException } from "@orion76/plugin";
 import { IPluginTypeStore } from "./types";
-import { createDebugLogger } from "../utils/debug-logger-factory";
+import { createDebugLogger, fprint } from "../utils/debug-logger-factory";
 
 
 const DEBUG = false;
-const debug = createDebugLogger(DEBUG, '[PluginTypeStore]');
+const debug = createDebugLogger(DEBUG, '[PluginTypeStore]', fprint);
 
 export class PluginTypeStore implements IPluginTypeStore {
     private _definitions: IPluginDefinition[] = [];
@@ -17,7 +17,7 @@ export class PluginTypeStore implements IPluginTypeStore {
     }
 
     addPluginDefinition(definition: IPluginDefinition) {
-        debug('addPluginDefinition', definition);
+        debug('addPluginDefinition: %0', [definition]);
 
         const { _definitions } = this;
 

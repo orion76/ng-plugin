@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/orion76/ng-plugin#readme",
   "peerDependencies": {
-    "@orion76/plugin": "^0.1.8"
+    "@orion76/plugin": "^0.1.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.6",

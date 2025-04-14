@@ -1,11 +1,11 @@
 
-import { createDebugLogger } from "../utils/debug-logger-factory";
+import { createDebugLogger, fprint } from "../utils/debug-logger-factory";
 import { PluginTypeStore } from "./plugin-type-store";
 import { IPluginsStore, IPluginTypeStore } from "./types";
 
 
 const DEBUG = false;
-const debug = createDebugLogger(DEBUG, '[PluginsStore]');
+const debug = createDebugLogger(DEBUG, '[PluginsStore]',fprint);
 
 
 class PluginsStore implements IPluginsStore {
@@ -15,7 +15,7 @@ class PluginsStore implements IPluginsStore {
         if (!this.hasPluginType(pluginType)) {
             this._store.set(pluginType, new PluginTypeStore(pluginType));
 
-            debug('add plugin type', pluginType);
+            debug('add plugin type: %0', [pluginType]);
         }
         return this._store.get(pluginType)!;
     }

@@ -6,7 +6,7 @@ import { PluginBuilderDefault } from "../plugin-builder/plugin-builder-default.s
 import { PluginDiscoveryDecoratorDefault } from "../plugin-discovery";
 import { PluginDiscoveryDefault } from "../plugin-discovery/plugin-discovery-default.service";
 import { getPluginsStore } from "../plugins-store";
-import { createDebugLogger } from "../utils/debug-logger-factory";
+import { createDebugLogger, fprint } from "../utils/debug-logger-factory";
 import { PluginManagerDefault } from "./plugin-manager-default.service";
 
 
@@ -15,7 +15,7 @@ export function createPluginManagerInjectionTokenDescription(pluginType: string)
 }
 
 const DEBUG = false;
-const debug = createDebugLogger(DEBUG, '[PluginManager Token]');
+const debug = createDebugLogger(DEBUG, '[PluginManager Token]', fprint);
 
 export function createPluginManagerToken<P extends IPlugin>(
     pluginType: string,
@@ -28,7 +28,7 @@ export function createPluginManagerToken<P extends IPlugin>(
     const _pluginDiscoveryCls = pluginDiscoveryCls ?? PluginDiscoveryDefault;
     const _pluginBuiilderCls = pluginBuilderCls ?? PluginBuilderDefault;
 
-    debug('createPluginManagerToken()', { pluginType });
+    debug('createPluginManagerToken(): %0', [{ pluginType }]);
 
     return new InjectionToken(createPluginManagerInjectionTokenDescription(pluginType), {
         providedIn: 'root',
@@ -43,7 +43,7 @@ function pluginManagerDefaultFactory(
     pluginBuilderCls: Type<IPluginBuilder>,
 ) {
     return () => {
-        debug('Creaete PluginManager:', pluginType);
+        debug('Creaete PluginManager: %0', [pluginType]);
         const providers: Provider[] = [
             { provide: PLUGIN_TYPE, useValue: pluginType },
             { provide: PLUGIN_DISCOVERY_DECORATED, useClass: pluginDiscoveryCls },
