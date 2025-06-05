@@ -8,7 +8,7 @@ export interface IPluginManagerMetadata {
 
 
 export interface IPluginTypeMetadata {
-    pluginType: string;
+    type: string;
     // manager: IPluginManagerMetadata;
     injector?: Injector;
     definitions: IPluginDefinition[];
@@ -16,11 +16,11 @@ export interface IPluginTypeMetadata {
 
 
 export interface IPluginsStore {
-    getPluginType(pluginType: string): IPluginTypeStore;
-    hasPluginType(pluginType: string): boolean;
+    getPluginType(type: string): IPluginTypeStore;
+    hasPluginType(type: string): boolean;
 }
 export interface IPluginTypeStore {
-    readonly pluginType: string;
+    readonly type: string;
     addPluginDefinition(definition: IPluginDefinition): void;
     getDefinitions(): IPluginDefinition[];
 }

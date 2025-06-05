@@ -1,15 +1,17 @@
+import { createDebugLogger } from "@orion76/debug-logger";
 import { IPluginDefinition, PluginException } from "@orion76/plugin";
+import { DEBUG_LOGGER_PREFIX } from "../constants";
 import { IPluginTypeStore } from "./types";
-import { createDebugLogger, fprint } from "../utils/debug-logger-factory";
 
-
-const DEBUG = false;
-const debug = createDebugLogger(DEBUG, '[PluginTypeStore]', fprint);
-
+const debug = createDebugLogger({
+    enabled: false,
+    id: 'plugin-type-store',
+    label: DEBUG_LOGGER_PREFIX + '[PluginTypeStore]',
+});
 export class PluginTypeStore implements IPluginTypeStore {
     private _definitions: IPluginDefinition[] = [];
 
-    constructor(public readonly pluginType: string) {
+    constructor(public readonly type: string) {
 
     }
     getDefinitions() {
@@ -17,13 +19,13 @@ export class PluginTypeStore implements IPluginTypeStore {
     }
 
     addPluginDefinition(definition: IPluginDefinition) {
-        debug('addPluginDefinition: %0', [definition]);
+        debug('addPluginDefinition: {{type}}', definition);
 
         const { _definitions } = this;
 
         if (_definitions.findIndex((item) => item.id === definition.id) > -1) {
-            const { id, pluginType } = definition;
-            throw new PluginException(pluginType, id, 'Plugin definition already exsists');
+            const { id, type } = definition;
+            throw new PluginException(type, id, 'Plugin definition already exsists');
         }
 
         const definitionClone: IPluginDefinition = { ...definition };

@@ -1,0 +1,1 @@
+export const DEBUG_LOGGER_PREFIX = '*** Plugin ';

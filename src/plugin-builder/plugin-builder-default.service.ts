@@ -1,9 +1,9 @@
-import { EnvironmentInjector, inject, Injector, runInInjectionContext } from '@angular/core';
+import { inject, Injector, runInInjectionContext } from '@angular/core';
 import { IPlugin, PluginBuilderBase, TPluginDefinition } from '@orion76/plugin';
-import { PLUGIN_INSTANCE } from '../injection-tokens';
+import { PLUGIN_DEFINITION, PLUGIN_INSTANCE } from '../injection-tokens';
 
 export class PluginBuilderDefault<P extends IPlugin> extends PluginBuilderBase<P> {
-  private parentInjector = inject(EnvironmentInjector);
+  protected parentInjector = inject(Injector);
 
   override build(definition: TPluginDefinition<P>): P {
     const { parentInjector } = this;
@@ -11,6 +11,7 @@ export class PluginBuilderDefault<P extends IPlugin> extends PluginBuilderBase<P
     return runInInjectionContext(parentInjector, () => {
       const injector = Injector.create({
         providers: [
+          { provide: PLUGIN_DEFINITION, useValue: definition },
           { provide: PLUGIN_INSTANCE, useClass: definition.pluginClass! }
         ],
         parent: parentInjector

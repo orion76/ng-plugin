@@ -1,27 +1,30 @@
 
-import { createDebugLogger, fprint } from "../utils/debug-logger-factory";
+
+import { createDebugLogger } from "@orion76/debug-logger";
+import { DEBUG_LOGGER_PREFIX } from "../constants";
 import { PluginTypeStore } from "./plugin-type-store";
 import { IPluginsStore, IPluginTypeStore } from "./types";
 
-
-const DEBUG = false;
-const debug = createDebugLogger(DEBUG, '[PluginsStore]',fprint);
-
+const debug = createDebugLogger({
+    enabled: false,
+    id: 'plugin-store',
+    label: DEBUG_LOGGER_PREFIX + '[PluginsStore]',
+});
 
 class PluginsStore implements IPluginsStore {
     private _store = new Map<string, IPluginTypeStore>();
 
-    getPluginType(pluginType: string): IPluginTypeStore {
-        if (!this.hasPluginType(pluginType)) {
-            this._store.set(pluginType, new PluginTypeStore(pluginType));
+    getPluginType(type: string): IPluginTypeStore {
+        if (!this.hasPluginType(type)) {
+            this._store.set(type, new PluginTypeStore(type));
 
-            debug('add plugin type: %0', [pluginType]);
+            debug('add plugin type: {{type}}', {type});
         }
-        return this._store.get(pluginType)!;
+        return this._store.get(type)!;
     }
 
-    hasPluginType(pluginType: string): boolean {
-        return this._store.has(pluginType);
+    hasPluginType(type: string): boolean {
+        return this._store.has(type);
     }
 }
 

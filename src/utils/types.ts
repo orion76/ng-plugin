@@ -1,0 +1,1 @@
+export type TObjectKeys<T extends object> = Extract<keyof  T, string>;

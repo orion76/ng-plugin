@@ -5,7 +5,7 @@ import { IPlugin, PluginManagerBase, IPluginBuilder, IPluginDiscovery } from '@o
 
 
 export class PluginManagerDefault<P extends IPlugin = IPlugin> extends PluginManagerBase<P> {
-  pluginType = inject(PLUGIN_TYPE);
+  type = inject(PLUGIN_TYPE);
   protected pluginBuilder = inject<IPluginBuilder>(PLUGIN_BUILDER);
   protected pluginDiscovery = inject<IPluginDiscovery>(PLUGIN_DISCOVERY);
 }
