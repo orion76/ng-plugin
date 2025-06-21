@@ -1,18 +1,7 @@
-import { assertInInjectionContext, inject, Injectable, INJECTOR, Injector, runInInjectionContext } from '@angular/core';
-import { getCurrentInjector } from '@angular/core/primitives/di';
+import { inject, Injector, runInInjectionContext } from '@angular/core';
 import { IPluginDefinition, IPluginDeriver, IPluginDiscovery, PluginDiscoveryDecorator, PluginException } from '@orion76/plugin';
-import { PLUGIN_DERIVER, PLUGIN_DISCOVERY_DECORATED } from '../injection-tokens';
+import { PLUGIN_DERIVER, PLUGIN_DISCOVERY } from '../injection-tokens';
 
-function getInjector(): Injector {
-  debugger;
-  assertInInjectionContext(getInjector);
-
-  const injector = getCurrentInjector();
-  if (!(injector instanceof Injector)) {
-    throw new Error();
-  }
-  return injector!;
-}
 
 
 export class PluginDiscoveryDecoratorDefault<
@@ -22,8 +11,8 @@ export class PluginDiscoveryDecoratorDefault<
 > extends PluginDiscoveryDecorator<BasePluginDef, DerivDef, PluginDef> {
 
   protected override derivers: Map<string, IPluginDeriver<DerivDef>> = new Map();
-  protected parentInjector = inject(Injector);
-  protected decorated = inject<IPluginDiscovery<BasePluginDef>>(PLUGIN_DISCOVERY_DECORATED);
+  protected parentInjector = inject(Injector, { self: true });
+  protected decorated = inject<IPluginDiscovery<BasePluginDef>>(PLUGIN_DISCOVERY);
 
   protected override createDeriver(basePLuginDefinition: BasePluginDef): IPluginDeriver<DerivDef> {
     const { parentInjector } = this;

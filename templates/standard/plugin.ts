@@ -1,4 +1,4 @@
-import { IPlugin, IPluginDefinition, IType, PluginBase } from '@orion76/plugin';
+import { IPlugin, IPluginDefinition, PluginBase } from '@orion76/plugin';
 import { Plugin } from '../../src/decorators/plugin.decorator'
 import { IPluginTemplate } from './types';
 import { PLUGIN_DEFINITION } from '../../src/injection-tokens';

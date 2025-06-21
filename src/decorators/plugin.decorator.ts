@@ -1,12 +1,10 @@
 
 import { Type } from "@angular/core";
-import { IPluginDefinition } from "@orion76/plugin";
-import { getPluginsStore } from "../plugins-store";
 import { createDebugLogger } from "@orion76/debug-logger";
-import { extractObjectProperties } from "../utils";
+import { IPluginDefinition } from "@orion76/plugin";
 import { DEBUG_LOGGER_PREFIX } from "../constants";
-
-
+import { getPluginsStore } from "../plugins-store";
+import { extractObjectProperties } from "../utils";
 
 
 const debug = createDebugLogger({
@@ -22,10 +20,7 @@ const debug = createDebugLogger({
  * @publicApi
  */
 export function Plugin<D extends IPluginDefinition = IPluginDefinition>(definition: D) {
-
-// return makeDecorator()
-
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (pluginClass: Type<any>) => {
         if (definition.disabled) {
             return;

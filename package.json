@@ -18,7 +18,9 @@
     "build": "ng build",
     "build:watch": "ng build --watch",
     "bw": "npm run build:watch",
-    "build:github": "node ./node_modules/.bin/ng build"
+    "build:github": "node ./node_modules/.bin/ng build",
+    "install:plugin": "./scripts/install_local_plugin.sh",
+    "ip": "npm run install:plugin"
   },
   "repository": {
     "type": "git",
