@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/orion76/ng-plugin#readme",
   "peerDependencies": {
-    "@orion76/debug-logger": "^0.0.8",
     "@orion76/plugin": "^0.1.10"
   },
   "devDependencies": {

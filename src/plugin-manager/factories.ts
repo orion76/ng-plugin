@@ -5,23 +5,14 @@ import { PLUGIN_BUILDER, PLUGIN_DEFINITION_COLLECTION, PLUGIN_DISCOVERY, PLUGIN_
 import { PluginDiscoveryDefault } from "../plugin-discovery/plugin-discovery-default.service";
 import { getPluginsStore } from "../plugins-store";
 
-import { createDebugLogger } from "@orion76/debug-logger";
-import { DEBUG_LOGGER_PREFIX } from "../constants";
 import { PluginDiscoveryDecoratorDefault } from "../plugin-discovery/plugin-discovery-decorator-default.service";
+import { PluginBuilderDefault } from "../public-api";
 import { PluginManagerDefault } from "./plugin-manager-default.service";
 import { IPluginManagerFactoryOptions } from "./types";
-import { PluginBuilderDefault } from "../public-api";
 
 export function createPluginManagerInjectionTokenDescription(type: string) {
     return `${type}__PLUGIN_MANAGER`;
 }
-
-const debug = createDebugLogger({
-    enabled: false,
-    id: 'crete-plugin-manager-token',
-    label: DEBUG_LOGGER_PREFIX + '[createPluginManagerToken]'
-});
-
 
 export function createPluginManagerTokenFactory<P extends IPlugin>(
     type: string,
@@ -51,8 +42,6 @@ export function createPluginManagerToken<P extends IPlugin>(
     pluginDiscoveryCls?: Type<IPluginDiscovery>,
     pluginBuilderCls?: Type<IPluginBuilder>,
 ) {
-    debug('createPluginManagerToken(): {{type}}', { type });
-
     return new InjectionToken<IPluginManager<P>>(createPluginManagerInjectionTokenDescription(type), {
         providedIn: 'root',
         factory: createPluginManagerTokenFactory(type, { pluginManagerCls, pluginDiscoveryCls, pluginBuilderCls }),
@@ -67,7 +56,6 @@ function pluginManagerDefaultFactory<P extends IPlugin>(
     pluginBuilderCls: Type<IPluginBuilder>
 ): () => IPluginManager<P> {
     return () => {
-        debug('Creaete PluginManager: {{type}}', { type });
         const providers: Provider[] = [
             { provide: PLUGIN_TYPE, useValue: type },
             { provide: PLUGIN_DISCOVERY, useClass: pluginDiscoveryCls },

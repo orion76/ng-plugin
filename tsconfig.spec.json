@@ -8,7 +8,7 @@
       "jasmine"
     ]
   },
-  "files":["tests/debug-logger.config.ts"],
+  "files":[],
   "include": [
     "tests/**/*.ts",
   ]
