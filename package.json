@@ -1,6 +1,6 @@
 {
   "name": "@orion76/ng-plugin",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Идея библиотеки Plugin была заимствована у CMF Drupal 8.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/orion76/ng-plugin#readme",
   "peerDependencies": {
-    "@orion76/plugin": "^0.1.13"
+    "@orion76/plugin": "^0.1.12"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.6",
