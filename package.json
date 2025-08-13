@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/orion76/ng-plugin#readme",
   "peerDependencies": {
-    "@orion76/plugin": "^0.1.12"
+    "@orion76/plugin": "^0.1.15"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.6",
@@ -51,5 +51,27 @@
     "karma-spec-reporter": "0.0.36",
     "ng-packagr": "^19.2.1",
     "typescript-eslint": "^8.29.0"
-  }
+  },
+  "keywords": [
+    "plugin",
+    "plugins",
+    "plugin-architecture",
+    "plugin-system",
+    "extensibility",
+    "modular",
+    "modularity",
+    "typescript",
+    "javascript",
+    "architecture",
+    "clean-architecture",
+    "ddd",
+    "dependency-injection",
+    "framework-agnostic",
+    "angular",
+    "orion76",
+    "plugin-manager",
+    "plugin-pattern",
+    "software-design",
+    "library"
+  ]
 }

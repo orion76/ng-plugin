@@ -3,4 +3,5 @@ lib
 .angular
 .vscode
 .idea
+.ai-context
 node_modules
