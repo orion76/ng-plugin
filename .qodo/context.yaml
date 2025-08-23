@@ -1,0 +1,97 @@
+name: "@orion76/ng-plugin"
+description: "Angular-надстройка над @orion76/plugin для плагин-архитектуры"
+version: "0.0.11"
+author: "Paul Glazkow"
+
+# Технический стек
+languages: [TypeScript]
+node_version: "20.19.0"
+package_manager: "npm"
+frameworks: [Angular]
+
+# Ключевые пути
+entry_points:
+  - "src/public-api.ts"
+  - "lib/index.js"
+
+important_paths:
+  - "src/decorators/plugin.decorator.ts" # NgPlugin декоратор
+  - "src/injection-tokens.ts" # Инжекшн-токены (PLUGIN_DEFINITION)
+  - "src/plugin/" # Базовые классы плагинов
+  - "src/plugin-manager/" # Менеджер плагинов
+  - "src/plugin-builder/" # Билдер плагинов
+  - "src/plugin-discovery/" # Обнаружение плагинов
+  - "templates/standard/plugin.ts" # Стандартный шаблон плагина
+  - "templates/standard/types.ts" # Типы для шаблонов
+  - "templates/from-config/" # Шаблоны из конфигурации
+
+# Команды
+commands:
+  install: "npm ci"
+  build: "npm run build"
+  build_watch: "npm run build:watch"
+  test: "npm test"
+  test_console: "npm run test:console"
+  test_browser: "npm run test:browser"
+  lint: "npx eslint ."
+  update_version: "npm run update-version"
+  install_plugin: "npm run install:plugin"
+
+# Архитектура плагинов
+plugin_architecture:
+  base_library: "@orion76/plugin"
+  decorator: "NgPlugin"
+  base_class: "NgPluginBase"
+  definition_interface: "IPluginDefinition"
+  plugin_interface: "IPlugin"
+  manager_interface: "IPluginManager"
+  injection_tokens:
+    - "PLUGIN_DEFINITION"
+  template_types:
+    - "standard" # Стандартный шаблон плагина
+    - "from-config" # Плагин из конфигурации
+
+# Стандарты кодирования
+coding_standards:
+  tsconfig: "tsconfig.json"
+  tsconfig_lib: "tsconfig.lib.json"
+  eslint: "eslint.config.js"
+  angular_config: "angular.json"
+  strict_mode: true
+  experimental_decorators: true
+
+# Ограничения и предпочтения
+constraints:
+  default_language: "ru"
+  editing_policy: "точечные правки, предпочитать replace_in_file"
+  output_style: "краткий, без тяжёлой разметки"
+  architecture_compliance: "соблюдать паттерн Plugin, использовать DI Angular"
+
+# Проверки после изменений
+verification:
+  on_change: ["lint", "build", "test"]
+  build_output: "lib/"
+  test_config: "karma-terminal.conf.js"
+
+# Дополнительная информация
+repository: "https://github.com/orion76/ng-plugin"
+documentation:
+  existing:
+    - "README.md"
+    - "docs/ru/README.md"
+    - "docs/cn/README.md"
+  context: ".qodo/docs-context.md"
+  target_audience: "Angular developers (middle/senior)"
+  style: "code-first with examples"
+  language: "ru (primary), en (API reference)"
+  format: "markdown with TypeScript highlighting"
+  sections:
+    - "overview"
+    - "quick-start"
+    - "core-concepts"
+    - "api-reference"
+    - "advanced-usage"
+    - "examples"
+    - "migration"
+examples: "examples/"
+scripts: "scripts/"
