@@ -1,9 +1,9 @@
 import { Type } from '@angular/core';
-import { Plugin } from "../src/decorators/plugin.decorator";
+import { NgPlugin } from "../src/decorators/plugin.decorator";
 export const PLUGIN_TYPE_TEST = 'PLUGIN_TYPE_TEST'
 
 
-@Plugin({
+@NgPlugin({
     id: 'PLUGIN_TEST_ONE_ID',
     type: PLUGIN_TYPE_TEST,
     label: 'PLUGIN TEST ONE'
@@ -11,7 +11,7 @@ export const PLUGIN_TYPE_TEST = 'PLUGIN_TYPE_TEST'
 class PluginTestOne {
 }
 
-@Plugin({
+@NgPlugin({
     id: 'PLUGIN_TEST_TWO_ID',
     type: PLUGIN_TYPE_TEST,
     label: 'PLUGIN TEST TWO'
@@ -19,7 +19,7 @@ class PluginTestOne {
 class PluginTestTwo {
 
 }
-@Plugin({
+@NgPlugin({
     id: 'PLUGIN_TEST_THREE_ID',
     type: PLUGIN_TYPE_TEST,
     label: 'PLUGIN TEST THREE'

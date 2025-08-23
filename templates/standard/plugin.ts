@@ -1,5 +1,5 @@
 import { IPlugin, IPluginDefinition, PluginBase } from '@orion76/plugin';
-import { Plugin } from '../../src/decorators/plugin.decorator'
+import { NgPlugin } from '../../src/decorators/plugin.decorator'
 import { IPluginTemplate } from './types';
 import { PLUGIN_DEFINITION } from '../../src/injection-tokens';
 import { inject } from '@angular/core';
@@ -8,7 +8,7 @@ export const PLUGIN_TEMPLATE_PLUGIN_TYPE = 'PLUGIN_TEMPLATE_PLUGIN_TYPE';
 
 export const PLUGIN_TEMPMLATE = 'PLUGIN_TEMPMLATE'
 
-@Plugin({
+@NgPlugin({
     label: 'PLUGIN_TEMPMLATE',
     type: PLUGIN_TEMPLATE_PLUGIN_TYPE,
     id: PLUGIN_TEMPMLATE
